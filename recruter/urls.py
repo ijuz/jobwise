@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+
+
 urlpatterns = [
-    path('',views.signup,name='signup')
+    path('createjob/', views.create_job, name="create_job"),
 ]
