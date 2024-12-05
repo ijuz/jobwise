@@ -15,7 +15,8 @@ from .models import CustomUser
 def SignUp(request):
     serializer = SignupSerializer(data=request.data)
     if serializer.is_valid():
-        user = serializer.save(is_workker=True)
+        user = serializer.save()
+        user.is_workker = True
         user.save()
         refresh = RefreshToken.for_user(user)
         tokens = {
