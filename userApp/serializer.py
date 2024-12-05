@@ -1,4 +1,4 @@
-from django.forms import ValidationError
+from rest_framework.exceptions import ValidationError # type: ignore
 from rest_framework import serializers # type: ignore
 from .models import CustomUser,UserProfile
 
@@ -10,16 +10,20 @@ class SignupSerializer(serializers.ModelSerializer):
         model = CustomUser
         fields =['id','username','email','password','phone_number']
 
-    def validated_username(self,value):
+    def validate_username(self,value):
         if CustomUser.objects.filter(username=value).exists():
             raise ValidationError("Username already exists.")
         return value
-    def validated_email(self,value):
+    
+    def validate_email(self,value):
         if CustomUser.objects.filter(email=value).exists():
             raise  ValidationError("Email already exists.")
-    def validated_phone_number(self,value):
+        return value
+    
+    def validate_phone_number(self,value):
         if CustomUser.objects.filter(phone_number=value).exists():
             raise  ValidationError("Phone Number already exists.")
+        return value
         
     def create(self,validated_data):
         user = CustomUser(
