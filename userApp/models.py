@@ -14,8 +14,6 @@ class CustomUser(AbstractUser):
         return self.username
 
 
-
-
 class UserProfile(models.Model):
     user = models.OneToOneField(CustomUser,on_delete=models.CASCADE)
     age = models.IntegerField(default=18)
@@ -23,5 +21,4 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
-    
     

@@ -32,3 +32,4 @@ def SignUp(request):
         "error": "Validation failed.",
         "details": serializer.errors
     }, status=status.HTTP_400_BAD_REQUEST)
+

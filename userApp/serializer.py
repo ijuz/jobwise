@@ -45,3 +45,4 @@ class WrokerprofileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
         fields =['user','full_name','age']
+
